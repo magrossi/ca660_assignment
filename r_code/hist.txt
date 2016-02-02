@@ -1,0 +1,512 @@
+p_ori <- cna13[cna13$statistical.indicator == "Population (Number)" & cna13$Province.or.County == "State" & cna13$Sex == "Both sexes", ]
+p_ori
+p_ori$statistical.indicator <- NULL
+p_ori$Province.or.County <- NULL
+p_ori$Sex <- NULL
+plot(p_ori)
+p_ori$Sex <- NULL
+p_ori$date <- as.Date(levels(p_ori$Census.Year), format = "%Y")
+p_ori$date
+p_ori$Census.Year <- NULL
+plot(p_ori)
+p_ori
+plot(p_ori[order(date), ])
+plot(p_ori[order("date"), ])
+p_ori[order("date"), ]
+p_ori[order("date"), ]
+p_ori
+head(p_ori)
+plot(p_ori)
+plot(p_ori, x = date, y = value)
+plot(p_ori, x = "date", y = "value")
+plot(x = p_ori$date", y = p_ori$value)
+)
+plot(x=p_ori$value, y=p_ori$date)
+plot(x=p_ori$date, y=p_ori$value)
+plot(p)
+plot(x=p_ori$date, y=p_ori$value)
+lines(p)
+ccf(v, p)
+ts(v)
+ts(p)
+p.window()
+window()
+window(p, 1975, 2011)
+ts(window(p, 1975, 2011))
+head(p)
+coredata(p)
+ccf(coredata(p), coredata(v))
+ccf(coredata(p), coredata(h))
+ccf(coredata(h), coredata(p))
+x <- ccf(coredata(h), coredata(p))
+x
+min(x)
+max(abs(x))
+x
+x$acf
+min(x$acf)
+h
+plot(p)
+plot(h)
+plot(p)
+plot(h)
+lines(p)
+plot(h)
+par(new=T)
+plot(p)
+par(new=F)
+plot.zoo(p)
+plot.zoo(h)
+coredata(h)
+window(coredata(h), 1975, 2011)
+window(coredata(h), start = 1975, end = 2011)
+window(coredata(h), start = 1975, end = 2011)
+ts(coredata(h))
+h_ts <- ts(coredata(h))
+window(h_ts, 1975, 2011)
+window(h_ts, 1, 10)
+window(h, start = 10, end = 20)
+window(h, start = as.Date("19750101", format="%Y%m%d"), end = as.Date("20110101", format="%Y%m%d"))
+hw <- window(h, start = as.Date("19750101", format="%Y%m%d"), end = as.Date("20110101", format="%Y%m%d"))
+pw <- window(p, start = as.Date("19750101", format="%Y%m%d"), end = as.Date("20110101", format="%Y%m%d"))
+plot(hw)
+plot(pw)
+plot(pw)
+par(new)
+plot(hw)
+par(new=T)
+plot(pw)
+ccf(hw, pw)
+ccf(corebase(hw), corebase(pw)
+)
+ccf(coredata(hw), coredata(pw))
+plot(pw)
+par(new=T)
+plot(hw, lag=-4)
+lag.plot(hw)
+lag.plot(hw, lags = 1)
+plot(lag(hw, k = 1))
+plot(lag(hw, k = 4))
+plot(lag(hw, k = -4))
+par(new=T)
+plot(pw)
+lhw <- lag(hw, k = -4)
+lpw <- lag(pw, k = -4)
+plot(pw)
+par(new=T)
+plot(lhw)
+lpw <- lag(pw, k = 4)
+plot(lhw)
+lines(hw)
+lines(hw,col=2)
+lines(lag(hw, k = -4), col=3)
+lines(lag(hw, k = -8), col=4)
+lines(lag(hw, k = +8), col=5)
+lines(hw, col=1)
+lines(lag(hw, k = +4), col=6)
+lines(pw)
+par(new=T)
+plot(pw, col=7)
+v
+par(new=T)
+plot(v, col=8)
+install.packages("vars")
+library(vars)
+data("Canada")
+summary(Canada)
+Canada$e
+Canada
+head(Canada)
+typeof(Canada)
+get(Canada)
+y<-matrix(1:20, nrow=5,ncol=4)
+typeof(y)
+cells <- c(1,26,24,68)
+rnames <- c("R1", "R2")
+cnames <- c("C1", "C2")
+mymatrix <- matrix(cells, nrow=2, ncol=2, byrow=TRUE,
+dimnames=list(rnames, cnames))
+mymatrix
+mymatrix[0]
+mymatrix[1]
+mymatrix[2]
+mymatrix[3]
+mymatrix[2,1]
+mymatrix[,4]
+mymatrix[,3]
+mymatrix[,0]
+mymatrix[,1]
+mymatrix[,2]
+mymatrix[,0]
+mymatrix[0,]
+mymatrix[1,]
+mymatrix[40,]
+mymatrix[20,]
+mymatrix[10,]
+mymatrix[0,]
+mymatrix[,2]
+Canada[,0]
+plot(Canada, nc = 2, xlab = "")
+plot(Canada, nc = 4, xlab = "")
+plot(Canada, nc = 1, xlab = "")
+plot(Canada, nc = 2, xlab = "")
+plot(Canada, nc = 0, xlab = "")
+plot(Canada, nc = 1, xlab = "")
+plot(Canada, nc = 1, xlab = "x")
+plot(Canada, nc = 1, xlab = "")
+plot(Canada, nc = 1)
+plot(Canada, nc = 1)
+Canada[,0]
+typeof(Canada[,0])
+pw
+typeof(pw)
+plot(pw)
+class(Canada)
+pw
+hw
+rebind
+rbind
+help(rbind)
+pw
+pw[,1]
+pw[,2]
+pw[,0]
+pw[0,]
+pw[0,]
+class(pw)
+pw
+info
+rbind(pw,hw)
+coredata(pw)
+class(coredata(pw))
+merge(pw, hw)
+plot(merge(pw, hw))
+source('~/.active-rstudio-document')
+library("pxR")
+path
+getwd()
+read.csv("../db/irl_Country_en_csv_v2.csv")
+read.csv("../db/irl_Country_en_csv_v2.csv")
+all_content <- readLines("../db/irl_Country_en_csv_v2.csv")
+all_content
+skip_four <- all_content[-4]
+dat <- read.csv(textConnection(skip_four))
+read.csv("../db/irl_Country_en_csv_v2.csv")
+dat <- read.csv("../db/irl_Country_en_csv_v2.csv")
+head(dat)
+dat <- read.csv("../db/irl_Country_en_csv_v2.csv")
+head(dat)
+summary(dat)
+View(dat)
+dat[dat$Indicator.Code == "NY.GDP.PCAP.CD", ]
+gdp <- dat[dat$Indicator.Code == "NY.GDP.PCAP.CD", ]
+gdp$X
+reshape
+t(gdp)
+gdp <- t(gdp)
+gdp
+gdp
+class(gdp)
+gdp[1,4]
+dim()
+dim(gdp)
+t1 <- array(1:20, dim=c(10,10))
+dim(t1)
+t1
+gdp[1:61,]
+gdp[8:59,]
+gdp[6:59,]
+gdp[5:59,]
+gdp <- gdp[5:59,]
+gdp
+typeof(gdp)
+as.numeric(gdp)
+gdp <- as.numeric(gdp)
+gdp
+plot(gdp)
+ts(gdp)
+ts(gdp)
+is.ts(gdp)
+ts(gdp, start = 1960)
+gdp <- ts(gdp, start = 1960)
+zoo(gdp)
+gdp <- ts(gdp, start = 1960)
+gdp
+plot(gdp)
+gdpw <- window(gdp, as.Date("1960", format = "%Y"))
+gdpw <- window(gdp, start = as.Date("1960", format = "%Y"))
+gdpw <- window(gdp, start = as.Date("1960", format = "%Y"))
+gdpw <- window(gdp, start = 1960)
+gdpw
+gdpw <- window(gdp, start = 1975, end = 2011)
+plot(gdpw)
+save(gdpw, file = "../db/gdp_1975_2011_usd.R")
+load("../db/gdp_1975_2011_usd")
+load("../db/gdp_1975_2011_usd.R")
+x <- load("../db/gdp_1975_2011_usd.R")
+plot(x)
+x
+class(x)
+gdpw
+saveRDS(gdpw, file = "../db/gdp_1975_2011_usd")
+saveRDS(gdpw, file = "../db/gdp_1975_2011_usd")
+help(loadRDS)
+loadRDS("../db/gdp_1975_2011_usd")
+readRDS("../db/gdp_1975_2011_usd")
+saveRDS(gdpw, ascii = TRUE, file = "../db/gdp_1975_2011_usd.rds")
+saveRDS(gdpw, ascii = TRUE, file = "../db/gdp_1975_2011_usd.rds")
+getFX
+library(quantmod)
+getFX("EUR/USD",from="1975-12-31", to="2011-12-31")
+getFX("EUR/USD",from="1975-12-31", to="1975-12-31")
+getFX("EUR/USD",from="1975-12-31", to="1976-01-01")
+getFX("JPY/USD",from="1975-12-31", to="1976-01-01")
+j <- getFX("JPY/USD",from="1975-12-31", to="1976-01-01")
+j
+plot(j)
+typeof(j)
+getFX("EUR/USD")
+e <- getFX("EUR/USD")
+e
+EURUSD
+plot(decompose(gdpw))
+plot(decompose(gdp)
+)
+ts.plot(gdpw)
+ts.plot(gdpw, hw, pw)
+ts.plot(gdpw, hw)
+hw
+tsh <- ts(hw, start=1975)
+ts.plot(gdpw, tsh)
+ts.plot(gdpw, tsh, col=c("blue","green"))
+plot(gdpw)
+ts.plot(gdpw, tsh, col=c("blue","green"))
+merge(gdpw,tsh)
+x
+merge(gdpw,tsh)
+x <- merge(gdpw,tsh)
+x
+x$x
+gdpw
+ts.union(gdpw,tsh)
+plot(ts.union(gdpw,tsh))
+hw
+h
+tsh2 <- ts(h, start=1970)
+ts.plot(gdpw,tsh2)
+ts.plot(ts.union(gdpw,tsh2))
+ts.plot(ts.union(gdpw,tsh2))
+m <- ts.union(gdpw, tsh2)
+m
+mw <- window(m, start=1975, end=2011)
+ts.plot(mw)
+frequency(mw)
+cycle(mw)
+cycle(gdp)
+acf(gdp)
+acf(mw)
+acf(ts.intersect(gdp, tsh2))
+plot(acf(ts.intersect(gdp, tsh2)))
+plot(acf(ts.intersect(gdp, tsh2)))
+acf(ts.intersect(gdp, tsh2))
+a <- acf(ts.intersect(gdp, tsh2))
+a
+acf(gdp,tsh2)
+acf(ts.intersect(gdp,tsh2))
+HoltWinters(gdp, gamma = FALSE)
+plot(HoltWinters(gdp, gamma = FALSE))
+gdp.hw <- HoltWinters(gdp, gamma = FALSE)
+gdp.predict <- predict(gdp.hw, n.ahead = 10)
+ts.plot(gdp, gdp.predict)
+ts.plot(gdp, gdp.predict, lty=1:2)
+gdp
+ts.plot(gdp, gdp.predict)
+gdp.predict
+acf(diff(gdp))
+gdp.ar <- ar(gdp, method="mle")
+gdp.ar
+gdp.ar$var.pred
+gdp.ar$x.mean
+gdp.ar$order.max
+gdp.ar$series
+gdp.ar$res[-1]
+gdp.ar$res
+gdp.ar$res[-4]
+gdp.ar$resid
+acf(gdp.ar$resid)
+acf(gdp.ar$resid[-1])
+acf(gdp.ar$resid[4])
+acf(gdp.ar$resid[4,])
+acf(gdp.ar$resid[])
+gdp.ar$resid[]
+gdp.ar$resid[1]
+gdp.ar$resid[-1]
+gdp.ar$resid[-2]
+gdp.ar$resid[-1]
+head(gdp.ar$resid, 4)
+head(gdp.ar$resid, -4)
+tail(gdp.ar$resid, 4)
+tail(gdp.ar$resid, -4)
+head(gdp.ar$resid, -4)
+tail(gdp.ar$resid, -4)
+acf(tail(gdp.ar$resid, -4))
+?lm
+lm(gdp)
+lm(gdp~time(gdp))
+gdp.re <- lm(gdp~time(gdp))
+summary(gdp.re)
+garch(gdp, grad="numerical")
+library(tseries)
+garch(gdp, grad="numerical")
+gdp.garch <- garch(gdp, grad="numerical")
+auto.arima(gdp)
+arima(gdp, order = c(0,1,1))
+gdp.arima <- arima(gdp, order = c(0,1,1))
+gdp.pred <- predict(gdp.arima, n.ahead=10)
+plot(gdp.pred)
+plot(gdp.pred$pred)
+gdp.arima
+plot(gdp.pred$se)
+ts.plot(gdp, gdp.pred)
+ts.plot(gdp, gdgdp.predict)
+ts.plot(gdp, gdp.pred)
+ts.plot(gdp, gdp.pred$pred)
+gdp.forecast <- forecast.Arima(gdp.arima, h = 5)
+plot.forecast(gdp.forecast)
+auto.arima(gdp, xreg = tsh)
+m <- ts.intersect(gdp, tsh)
+m
+auto.arima(m)
+hsa06_ts
+auto.arima(hsa06_ts, xreg=m)
+auto.arima(window(hsa06_ts, end=2011), xreg=m)
+model <- arima(window(hsa06_ts, end = 2011), xreg=m, order = c(2,0,0))
+mode.pred <- predict(model, n.ahead=2)
+model <- arima(window(hsa06_ts, end = 2008), xreg=window(m, end = 2008), order = c(2,0,0))
+model.pred <- predict(model, n.ahead = 2)
+model.pred <- predict(model, n.ahead = 2, xreg = m)
+model.pred <- predict(model, n.ahead = 2, xreg = windows(m, start = 2009))
+model.pred <- predict(model, n.ahead = 2, newxreg = m)
+forecast(model)
+forecast(model, xreg=m, h=2)
+plot(forecast(model, xreg=m, h=2))
+fitted(model)
+?forecast
+model <- arima(window(hsa06_ts, end = 2008), xreg=m, order = c(2,0,0))
+model <- arima(window(hsa06_ts, end = 2008), xreg=window(m, end = 2008), order = c(2,0,0))
+forecast(model)
+forecast(model, n.ahead = 3)
+forecast(model, xreg=m, n.ahead = 3)
+forecast(model, xreg=window(m, start=2009), n.ahead = 3)
+forecast(model, xreg=window(m, start=2009), h = 3)
+mode.forecast <- forecast(model, xreg=window(m, start=2009), h = 3)
+ts.plot(mode.forecast, hsa06_ts)
+mode.forecast
+class(mode.forecast)
+plot(mode.forecast)
+lines(hsa06_ts)
+lines(hsa06_ts, col=c("blue"))
+lines(mode.forecast)
+plot(mode.forecast)
+as.ts(mode.forecast)
+plot(mode.forecast$mean)
+ts.plot(mode.forecast$mean, hsa06_ts)
+ts.plot(mode.forecast$mean, hsa06_ts, col=c("blue","red"))
+hsa06_ts
+forecast(model, xreg=m, h=2)
+mode.forecast <- forecast(model, xreg=window(m, start=2009), h = 4)
+ts.plot(mode.forecast$mean, hsa06_ts, col=c("blue","red"))
+mode.forecast
+mode.forecast <- forecast(model, xreg=window(m, start=2008), h = 4)
+ts.plot(mode.forecast$mean, hsa06_ts, col=c("blue","red"))
+mode.forecast
+mode.forecast <- forecast(model, xreg=window(m, start=2008), h = 3)
+mode.forecast
+model$series
+mode.forecast <- forecast(model, xreg=m, h = 3)
+mode.forecast
+mode.forecast <- forecast(model, newxreg=m, h = 3)
+mode.forecast
+mode.forecast <- forecast(model, newxreg=m, h = 3)
+mode.forecast <- forecast(model, newxreg=window(m, start=2008), h = 4)
+mode.forecast <- forecast(model, newxreg=window(m, start=2008), xreg=m, h = 4)
+mode.forecast
+auto.arima(gdp, tsh)
+auto.arima(hsa06_ts, gdp)
+m <- ts.intersect(hsa06_ts, gdp)
+auto.arima(m[,1], m[,2])
+auto.arima(m[,1], xreg=m[,2])
+arima(m[,1], xreg=m[,2], order=c(1,0,2))
+x <- arima(m[,1], xreg=m[,2], order=c(1,0,2))
+fit <- arima(m[,1], xreg=m[,2], order=c(1,0,2))
+Box.test(residuals(fit), fitdf=5, lag=10, type="L jung")
+Box.test(residuals(fit), fitdf=5, lag=10, type="Ljung-Box")
+?Box.test
+Box.test(residuals(fit), fitdf=3, lag=1, type="Ljung")
+Box.test(residuals(fit), fitdf=3, lag=4, type="Ljung")
+rep(mean(m[,2]),8)
+m
+gdp
+fcast <- forecast(fit, xreg=window(gdp,start=2014), h=1)
+window(gdp,start=2014)
+fcast <- forecast(fit, xreg=window(gdp,start=2014))
+fcast <- forecast(fit, xreg=window(gdp,start=2013))
+fcast <- forecast(fit, xreg=rep(mean(m[,2]),8),h=8)
+fcast <- forecast(fit, newxreg=rep(mean(m[,2]),8),h=8)
+fcast <- forecast(fit, xreg=rep(mean(m[,2]),8),h=8)
+gdp
+hsa06_ts
+e_in <- window(gdp, start=1975, end=2005)
+p_in <- window(hsa06_ts, start=1975, end=2005)
+e_out <- window(gdp, start=2006)
+p_out <- window(hsa06_ts, start = 2006)
+auto.arima(p_in, xreg=e_in)
+ep_fit <- arima(p_in, xreg=e_in, order = c(1,0,2))
+plot(ep_fit)
+plot(ep_fit$arma)
+plot(ep_fit$coef)
+ep_for <- forecast(ep_fit, h = length(e_out), xreg=e_out)
+ep_fit$call$xreg
+ncol(ep_fit$call$xreg)
+ep_fit$call$x
+ep_fit$call$xreg
+ncol(e_out)
+length(e_out)
+e_out
+ep_for <- forecast(ep_fit, h = length(e_out), xreg=window(gdp, start = 2006))
+ep_fit <- Arima(p_in, xreg=e_in, order = c(1,0,2))
+ep_for <- forecast(ep_fit, h = length(e_out), xreg=e_out)
+ts.plot(ep_for)
+ep_for$mean
+ts.plot(ep_for$mean, p_out, col=c("red", "blue"))
+ts.plot(ep_for$mean, hsa06_ts, col=c("red", "blue"))
+ep_fit$residuals
+ep_fit$nobs
+ep_fit$x
+lines(ep_fit$x)
+fitted()
+fitted(ep_fit)
+plot(fitted(ep_fit))
+lines(p_in)
+plot(p_in)
+lines(ep_for$mean)
+ts.plot(ep_for$mean, hsa06_ts, col=c("red", "blue"))
+gdp
+saveRDS(gdp, file = "gdp_1960_2014_usd.rds", ascii = TRUE)
+saveRDS(gdp, file = "../db/gdp_1960_2014_usd.rds", ascii = TRUE)
+hsa08 <- read.px("../db/HSA08 House Loans Approved and Paid by House Type New or Second hand, Year and Statistic.px")
+hsa08 <- data.frame(hsa08)
+View(hsa08)
+?na.approx()
+pre.process.cso.data(hsa08, "value", "Year")
+pre.process.cso.data(hsa08[hsa08$statistical.indicator == "Value of House Loans Approved (Euro Million)" & hsa08$House.Type.New.or.Second.hand == "New houses",], "value", "Year")
+hsa08_zoo <- pre.process.cso.data(hsa08[hsa08$statistical.indicator == "Value of House Loans Approved (Euro Million)" & hsa08$House.Type.New.or.Second.hand == "New houses",], "value", "Year")
+as.ts(hsa08_zoo)
+ts(hsa08_zoo, start = 1975)
+as.ts(hsa08_zoo[,2])
+as.ts(hsa08_zoo[1,])
+as.ts(hsa08_zoo[2,])
+as.ts(hsa08_zoo[,1])
+as.ts(hsa08_zoo[,2])
+hsa08_zoo
+savehistory("D:/Study/DCU/MCM/CA660 - Statistical Data Analysis/Assignment/ca660_assignment/r_code/hist.txt")

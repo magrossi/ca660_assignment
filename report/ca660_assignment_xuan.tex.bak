@@ -1,0 +1,67 @@
+\documentclass{article}
+\usepackage{hyperref}
+\usepackage{natbib}
+\usepackage{graphicx}
+\bibliographystyle{IEEEtranN}
+\title{House prices... need better title}
+\author{Marcelo Grossi and Xuan Yang}
+\begin{document}
+\maketitle
+\begin{abstract}
+Widely attributed as the cause of the global market crisis of 2007, the house pricing bubble is an important topic of research. Economists try to explain the causes of this bubble and ways of preventing it in the future.
+\par
+Studies previous to the house crash were inconclusive and researches did not agree that the housing market was in a bubble (\citep{unknown2010} and \citep{winter2003}).
+\end{abstract}
+\section{Introduction}
+After a five-year housing bust, Ireland?s house prices are now rising sharply. The national residential property price index skyrocketed by 16.2\% (16.1\% inflation-adjusted) y-o-y in November 2014, a sharp improvement from the annual rise of 5.6\% a year earlier and a contraction of 5.7\% in November 2012, according to Central Statistics Office Ireland. During the latest quarter, nationwide house prices rose sharply by 5.3\% (6.2\% inflation-adjusted).\footnote{Global Property Guide, http://www.globalpropertyguide.com}
+\par
+In this report, an effort is made to forecast the house price in Ireland for the 2-5 future years, meanwhile, based on the data before 2007, a prediction for 2008-2011 would be compared to the existing data, to study how much the crisis influenced the house pricing mathematically, and to verify the accuracy of our prediction according to the real data. 
+\par
+This prediction is based on the time series analysis, with R\footnote{A programming language for Statistical Computing} and various time series and statistical packages\footnote{pxR, tseries, forecast package} are used along with other standard packages as the statistical software. Time series decomposition is to decompose a time series into trend, seasonal, cyclical and irregular components, which is also a sequence of data points, typically consisting of successive measurements made over a time interval. For the analysis, which comprises methods for analysing time series data in order to extract meaningful statistics and other characteristics of the data.\footnote{Wikipedia, https://en.wikipedia.org/wiki/Time\_series} 
+\par
+We built our prediction model according to the ARIMA\footnote{Autoregressive Integrated Moving Average} model, which is itted to time series data either to better understand the data or to predict future points in the series (forecasting). They are applied in some cases where data show evidence of non-stationarity, where an initial differencing step (corresponding to the "integrated" part of the model) can be applied to reduce the non-stationarity. For house price forecasting this model assumes and takes into account the non-zero autocorrelation between the successive values of the time series data, and considering other datasets we used for this model, such as population and GDP, this model would also involve them. The goal of this effort is to use the Box-Jenkins time series, including exogenous predictors is called a dynamic regression model, and special care must be taken to ensure that the internal dynamics of each exogenous predictor is not confounded with the dynamics of any other predictor. 
+\par
+When there are multiple exogenous predictors (Population, GDP, House completions), that influence a response variable, the house price, the same steps must be followed for the case in which there is only one predictor. Each exogenous predictor is a time series in itself that must be calculated independently of the others so that the identification of the house price response can be performed in the presence of the other data. Once the response model has been identified, the estimation and forecasting steps follow directly.
+\section{The Data}
+In order to ensure the accuracy and the objectivity of our statistic analysis, we find some authoritative and reliable websites as the sources for data, such as CSO\footnote{http://www.cso.ie}, which is the Ireland's national statistical office, responsible for coordinating the official statistics of other public authorities and for developing the statistical potential of administrative records. and The World Bank Open Data\footnote{http://data.worldbank.org}, which is free and open access to data about development in countries around the globe. Considering what elements would impact the house price in the reality, we choose four different kinds of datasets as our reference datasets - Population, GDP\footnote{Gross Domestic Product}, House completions and the Price of House. 
+\par Also these four have internal relationships, they influenced each other.
+\subsection{Population}
+A population is a summation of all the organisms of the same group or species, which live in a particular geographical area, and have the capability of interbreeding.\footnote{Wikipedia. https://en.wikipedia.org/wiki/Population}
+\par
+We get the population dataset - Annual Rate of Population Increase by Sex, Province or County, CensusYear and Statistic\footnote{Table CNA13 on CSO}and it was gathered and organised by CSO, published on September 2, 2015.
+\par
+Normally, the amount of house would not bigger than the population, in another word, the population decides the number of house indirectly. (The limits or critical value of No. of house?)
+\par
+The original dataset only has the population for each 5 years from 1841 - 2011, which is not suits the format we need, so we made it completed for every year's population number by R.
+\subsection{GDP}
+GDP at purchaser's prices is the sum of gross value added by all resident producers in the economy plus any product taxes and minus any subsidies not included in the value of the products.\footnote{The World Bank, http://data.worldbank.org/indicator}, it shows the people's income in a country indirectly.
+\par
+We choose the GDP (current LCU\footnote{Local Currency}) data from the World Development Indicator dataset \footnote{The World Bank Data in Ireland}as our GDP dataset, It is calculated without making deductions for depreciation of fabricated assets or for depletion and degradation of natural resources. 
+\par
+The GDP influence the housing in two basic ways: through private residential investment and consumption spending on housing services. Study in the U.S. \footnote{National Association of Home Builders, http://nahb.org}shows that residential investment has averaged roughly 5\% of GDP while housing services have averaged between 12\% and 13\%, for a combined 17\% to 18\% of GDP. These shares tend to vary over the business cycle. 
+\par
+At first we wanted to use estimates of household income\footnote{Table CIA01 on CSO} as the dataset of this part, because its data is more precise and conforms to the real life, which could improve the reliability of our work. However later we found that the GDP would be better to explain the whole income for a country on an average level in this case, and we could only get the estimates of household income data in a short period, but we want the whole assessment could be tested in a long time, so finally GDP dataset becomes our choice.
+\subsection{House Completions}
+House completions dataset\footnote{Table HSA01 on CSO} is based on the number of new dwellings connected by ESB Networks\footnote{A licensed operator of the electricity distribution system in Ireland.} to the electricity supply and may not accord precisely with local authority boundaries. These represent the number of homes completed and available, and do not reflect any work-in progress. ESB Networks have indicated that there was a higher backlog in work-in-progress in 2005 than usual (estimated as being in the region of 5,200 units). This backlog was cleared through the connection of an additional 2,000 houses in Quarter 1 2006 and 3,000 houses in Quarter 2 2006.
+In addition, second-hand houses are not included.
+\par
+Th amount of house is a important part in the house price prediction model\citep{toby2014}. The house completions, as a scalar for independent variables, does suggest possible endogeneity. And there are some factors which might affect it, such as the cost of housing and demographic factors. 
+\par
+In the real life, if an individual is already in a separate household, he or she will usually stay as a separate household. This implies that affordability issues are likely to affect the house price forecast. 
+And consider to the region's economy condition, in some cases, if it shows well then this number would increase rapidly even the market has not many requirements for houses.
+\subsection{The Price of House}
+The measure of house prices used in this model is the House Loans Paid Value\footnote{Table HSA08 on CSO}, which is based on the existing house mortgages in Ireland from 1970 - 2011. This only reflects prices from new houses in Table HSA01, the dataset contains an unquantified element of refinancing of existing mortgages, involving the redemption of an existing mortgage and its replacement with a mortgage from a different lender.
+\par
+In this prediction the house prices is the core information, its trend would influence our analysis directly. So we assume that the growth in real house prices is a function of growth in real income, change in the housing discount rate, and a long-term relationship between prices, GDP and the number of house.  
+House, as a special product, can be said to be a part of one of the most important asset, in theory, the house is a eternal wealth, so its price usually would increase, especial in some developed areas, the price bounds to the economy as a indispensible part.
+
+ 
+\section{Study}
+\subsection{Methodology}
+Here we present our 'formula' for predicting house pricing and the rationale behind it
+\subsection{Results}
+Here we show the results of our estimation function against real data
+\section{Conclusions}
+Here we give a brief conclusion of results achieved
+\bibliography{ca660_assignment}
+\end{document}

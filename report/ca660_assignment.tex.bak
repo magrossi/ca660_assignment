@@ -15,34 +15,17 @@ Widely attributed as the cause of the global market crisis of 2007, the house pr
 This project aims to forecast the prices of new houses in Ireland based on available statistical data sets that from a fundamental economic standpoint (\citep{gert2007}) might influence the housing market (\citep{toby2014}). Four fundamentally sensitive data sets are chosen of an initial group to serve as predictors. An ARIMA model is then fitted to our data and a forecast of the prices of new houses in Ireland is produced with satisfactory results.
 \end{abstract}
 \section{Introduction}
-The housing market is one of the fundamental cornerstones of an economy. The ability to forecast it by using fundamental economic theory is always a hot topic for research. Given the nature of the house pricing market a special type of statistical analysis is necessary. Time series analysis differs from other statistical analysis due to the fact that it needs to account for the fact that data points taken over time may have an internal structure (such as trend, autocorrelation, or seasonal variation).
+After a five-year housing bust, Ireland?s house prices are now rising sharply. The national residential property price index skyrocketed by 16.2\% (16.1\% inflation-adjusted) y-o-y in November 2014, a sharp improvement from the annual rise of 5.6\% a year earlier and a contraction of 5.7\% in November 2012, according to Central Statistics Office Ireland. During the latest quarter, nationwide house prices rose sharply by 5.3\% (6.2\% inflation-adjusted).\footnote{Global Property Guide, http://www.globalpropertyguide.com}
 \par
-In this report, an effort is made to forecast the new house prices in Ireland for the periods of 2006 to 2011 by using historical data from 1975 to 2005 and also a set of explanatory variables from the same period. We also show comparatively the forecast data against the real data for visually assessment of the quality of the prediction.
+In this report, an effort is made to forecast the house price in Ireland for the 2-5 future years, meanwhile, based on the data before 2007, a prediction for 2008-2011 would be compared to the existing data, to study how much the crisis influenced the house pricing mathematically, and to verify the accuracy of our prediction according to the real data. 
 \par
-This forecast will be based on time series analysis using the R software platform and various packages. We will use the \(ARIMA\) autoregressive model to fit our historical data plus explanatory data and predict future points. These model is very powerful in the sense that it can be applied to non-stationary time series by means of a differencing step. It is important to note that when explanatory variables are added to an autoregressive model this is also known as a dynamic autoregressive model\citep{Hyndman2008}.
+This prediction is based on the time series analysis, with R\footnote{A programming language for Statistical Computing} and various time series and statistical packages\footnote{pxR, tseries, forecast package} are used along with other standard packages as the statistical software. Time series decomposition is to decompose a time series into trend, seasonal, cyclical and irregular components, which is also a sequence of data points, typically consisting of successive measurements made over a time interval. For the analysis, which comprises methods for analysing time series data in order to extract meaningful statistics and other characteristics of the data.\footnote{Wikipedia, https://en.wikipedia.org/wiki/Time\_series} 
+\par
+We built our prediction model according to the ARIMA\footnote{Autoregressive Integrated Moving Average} model, which is itted to time series data either to better understand the data or to predict future points in the series (forecasting). They are applied in some cases where data show evidence of non-stationarity, where an initial differencing step (corresponding to the "integrated" part of the model) can be applied to reduce the non-stationarity. For house price forecasting this model assumes and takes into account the non-zero autocorrelation between the successive values of the time series data, and considering other datasets we used for this model, such as population and GDP, this model would also involve them. The goal of this effort is to use the Box-Jenkins time series, including exogenous predictors is called a dynamic regression model, and special care must be taken to ensure that the internal dynamics of each exogenous predictor is not confounded with the dynamics of any other predictor. 
+\par
+When there are multiple exogenous predictors (Population, GDP, House completions), that influence a response variable, the house price, the same steps must be followed for the case in which there is only one predictor. Each exogenous predictor is a time series in itself that must be calculated independently of the others so that the identification of the house price response can be performed in the presence of the other data. Once the response model has been identified, the estimation and forecasting steps follow directly.
 \section{The Data}
-In order to ensure the accuracy and the objectivity of our statistic analysis, we found some authoritative and reliable databases as the sources for data such as the Central Statistics Office\footnote{CSO - http://www.cso.ie}, which is Ireland's national statistical office, responsible for coordinating the official statistics of other public authorities and for developing the statistical potential of administrative records and The World Bank Open Data\footnote{http://data.worldbank.org}, which is an open database about country development from all around the globe. Considering what elements might impact the house price market, we choose some datasets that are commonly referred by economic papers on the subject (\citep{toby2014} and \citep{gert2007}).
-\subsection{Population}
-The census population as measured by the central statistics office of Ireland\footnote{Table CNA13 on CSO}. 
-Normally, the amount of houses would not be bigger than the population, other words, the population can influence the number of houses needed indirectly.
-\par
-The original dataset only had the population for each 5 year interval from 1841 to 2011 (Census years). For analysing time series we need to have data with matching frequencies, therefore we used linear interpolation to fill in the gaps. We will be calling this data set henceforth as \(cna13\).
-\subsection{Gross Domestic Product}
-Gross Domestic Product (GDP) is a measure of a nation's total economic activity. It represents the monetary value of all goods and services produced within a nation over a specified period of time (usually per annum).
-\par
-This data was obtained from the World Development Indicator dataset\footnote{The World Bank Data in Ireland}. It is calculated without making deductions for depreciation of fabricated assets or for depletion and degradation of natural resources. 
-\par
-The GDP influence the housing in two basic ways: through private residential investment and consumption spending on housing services. The mentality is very naive, the more money that is available in an economy, the more people will spend in housing what would drive the prices up.
-\par
-At first we wanted to use estimated household disposable income\footnote{Table CIA01 on CSO} as this indicator is more precise regarding how much money people have at-hand. However there was no significant historical available for this (data exists only from 2000 onwards). So finally \(gdp\) (in Euro) becomes our choice.
-\subsection{House Completions}
-House completions dataset\footnote{Table HSA01 on CSO} is based on the number of new dwellings connected to ESB\footnote{A licensed operator of electricity distribution in Ireland.} electricity network. These represent the number of homes completed and available, and do not reflect any work-in progress. ESB have indicated that there was a higher backlog in work-in-progress in 2005 than usual (estimated as being in the region of 5,200 units). This backlog was cleared through the connection of an additional 2,000 houses in Quarter 1 2006 and 3,000 houses in Quarter 2 2006. In addition, second-hand houses are not included. This dataset will be referred by as \(hsa01\).
-\par
-The amount of new houses is a important part in the house price prediction model\citep{toby2014}. It is very intuitive that house completions would be a good indicator of the supply of new houses.
-\subsection{Value of House Loans Approved}
-This measure is the total value of approved house loans\footnote{Table HSA08 on CSO}, which is based on the existing house mortgages in Ireland from 1970 to 2011. This only reflects loans approved for purchases of new new houses. It is worth mentioning that dataset contains an unquantified element of refinancing of existing mortgages, involving the redemption of an existing mortgage and its replacement with a mortgage from a different lender.
-\par
-The amount of money approved for buying new houses is a very good intuitive measure of demand for new houses. This will be called \(hsa08\) throughout this study.
+To be written...
 \section{Study: A Time Series Analysis}
 Time series analysis is a very large research topic given its large usability in a multitude of environments and several methods for analysing such data exists (\citep{cowpertwait2009introductory} and \citep{Coghlan2015}), which gives a researcher an ample choice of approaches to work with. That is why it is of paramount importance that an appropriate model is chosen.
 \subsection{Model choice}
@@ -52,7 +35,7 @@ For this project we chose the autoregressive integrated moving average or \(ARIM
 \par
 According to \citep{hyndman2014forecasting} we can introduce the explanatory variables by letting the error \(e\) be autocorrelated. This can be expressed by the backshift notation (\(B^dy = y_{t-d}\)) example \(ARIMA(1,1,1)\) equation below, where \(x_{1,t}\) to \(x_{k,t}\) are our explanatory variables (\(cna13\), \(hsa01\), \(hsa08\) and \(gdp\)).
 \[y_t = \beta_0 + \beta_1x_{1,t} + ... + \beta_kx_{k,t} + n_t,\]
-\[(1-\phi_1B)(1-B)n_t=(1+\theta_1B)e_t,\]
+\[(1-\phi_1B)(1-B)n_t=(1+\chi_1B)e_t,\]
 where \(e_t\) is white noise.
 \subsection{Model Parameters}
 The \(p\), \(d\) and \(q\) parameters must be chosen for the \(ARIMA(p,d,q)\) model. Parameter \(p\) is the coefficient of the auto regressive part, \(d\) is the integration order (or the number of differences that make our time series stationary) and \(q\) is the coefficient for the moving average. In this project we use the \citep{Hyndman2008} algorithm that traverses the model space and tries to minimize the corrected Akaike’s Information Criterion (\(AIC_c\)) value in a two-step approach. \par
@@ -89,22 +72,22 @@ Year & Forecast & Real & Lo 80 & Lo 95 & Hi 80 & Hi 95 \\ \hline
   \caption{Table of scaled prices of new Irish houses}
   \label{tab:forecast}
 \end{table}
-\begin{figure}[H]
+\begin{figure}[!ht]
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio,natwidth=682,natheight=544]{forecast.jpeg}
 \caption{Real prices for new Irish houses versus forecast prices.}
 \label{fig:forecast}
 \end{figure}
 \par
 The visual comparison of the forecast values versus the real values is very satisfying but we must also analyse the forecasts residuals. It is desired that the residual errors of a forecast be normally distributed with zero mean and constant variance and have no correlation between successive forecast errors. This is to ensure that the residuals are just noise and do not hide any unexplained variables which would indicate a poor forecast model.
-\begin{figure}[H]
+\begin{figure}[!ht]
 \centering
-\includegraphics[width=1\linewidth,keepaspectratio,natwidth=682,natheight=544]{residuals.jpeg}
+\includegraphics[width=0.7\linewidth,keepaspectratio,natwidth=682,natheight=544]{residuals.jpeg}
 \caption{Forecast residuals errors, autocorrelation and partial autocorrelation.}
 \label{fig:residuals}
 \end{figure}
-\begin{figure}[H]
+\begin{figure}[!ht]
 \centering
-\includegraphics[width=1\linewidth,keepaspectratio,natwidth=682,natheight=544]{normal.jpeg}
+\includegraphics[width=0.7\linewidth,keepaspectratio,natwidth=682,natheight=544]{normal.jpeg}
 \caption{Normal Q-Q plot of forecast residuals.}
 \label{fig:normal}
 \end{figure}
